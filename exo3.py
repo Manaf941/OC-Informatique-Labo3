@@ -1,15 +1,14 @@
-vowels = list("aeiouy")
+vowels = set("aeiouy")
 
 def extract_vowels(word: str):
-    result = ""
+    count = 0
     for char in word:
         if char not in vowels:
             continue
 
-        result += char
+        count += 1
 
-    return result
+    return count
 
-print(extract_vowels("aujourd'hui")) # auouui
-print(extract_vowels("exceptionnel")) # eeioe
-print(extract_vowels("cygne")) # ye
+for word in ["aujourd'hui", "exceptionnel", "cygne"]:
+    print(word, extract_vowels(word))

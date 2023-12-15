@@ -19,8 +19,12 @@ def moyenne(notes: List):
     return somme / len(notes)
 
 def arrondir(note):
-    return note
+    error = note % 0.5
+    note = note - error
+    if error >= 0.25:
+        note += 0.5
 
+    return note
 
 # 4.071428571428571, la fonction est correcte
 # print(moyenne(notes_français))
@@ -31,18 +35,18 @@ notes_anglais = [5, 4.5, 5, 5.5, 4.5, 5]
 notes_os = [5, 4.5, 4.5, 5, 5.5]
 
 notes = {
-    "français": notes_français,
-    "maths": notes_maths,
-    "allemand": notes_allemand,
-    "anglais": notes_anglais,
-    "os": notes_os
+    "français": notes_français, # 4
+    "maths": notes_maths, # 4
+    "allemand": notes_allemand, # 3.5
+    "anglais": notes_anglais, # 5
+    "os": notes_os # 5
 }
 
 panier = 0
 for matiere in notes:
-    moy = moyenne(
-            notes[matiere]
-        )
+    moy = arrondir(moyenne(
+        notes[matiere]
+    ))
     print(f"{matiere}: {moy}")
     
     if matiere == "allemand" or matiere == "anglais":
@@ -50,4 +54,4 @@ for matiere in notes:
     else:
         panier += moy
 
-print(f"Panier: {panier}")
+print(f"Panier: {arrondir(panier)}")
